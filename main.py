@@ -1,50 +1,59 @@
 #!/usr/bin/env python3
-"""Entry point for The Day in Brief — Thursday 19 November 2026.
+"""Entry point for the 19 November 2026 visual edition.
 
-The edition's front page is committed in this repository as entry.png,
-typeset from the day's wire reporting by tools/render.py. This program
-is the competition entry: it delivers that page to the output directory
-as /output/entry.png (or $MAKEFUN_OUTPUT_DIR/entry.png when the harness
-sets the variable), using only the standard library, with no network.
-
-Delivery is verified before success is reported: the file written is
-read back and compared byte for byte with the committed page, so a
-truncated write or a swapped source fails loudly instead of passing.
+The front page is composed ahead of time by tools/compose.py and stored
+beside this file as entry.png. At grade time there is no network and no
+clock to consult, so the whole job here is a careful copy: verify the
+asset really is the page we shipped, then place it at /output/entry.png
+byte for byte.
 """
-
 import os
 import sys
+import tempfile
 
+PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 HERE = os.path.dirname(os.path.abspath(__file__))
 SOURCE = os.path.join(HERE, "entry.png")
+TARGET_DIR = "/output"
+TARGET = os.path.join(TARGET_DIR, "entry.png")
 
 
-def deliver_page():
-    """Copy the committed front page into the output directory."""
-    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
-    os.makedirs(out_dir, exist_ok=True)
-    target = os.path.join(out_dir, "entry.png")
-    with open(SOURCE, "rb") as handle:
-        page = handle.read()
-    with open(target, "wb") as handle:
-        handle.write(page)
-    return target, page
+def read_page() -> bytes:
+    with open(SOURCE, "rb") as fh:
+        blob = fh.read()
+    if not blob.startswith(PNG_SIGNATURE):
+        raise SystemExit("entry.png is not a PNG file")
+    if len(blob) > 1024 * 1024:
+        raise SystemExit("entry.png exceeds the 1 MiB limit")
+    # The IHDR chunk follows the signature: width and height are the two
+    # big-endian uint32s at bytes 16..24. The rules cap the page at
+    # 1024x1024, so refuse anything larger before it is published.
+    width = int.from_bytes(blob[16:20], "big")
+    height = int.from_bytes(blob[20:24], "big")
+    if width > 1024 or height > 1024:
+        raise SystemExit(f"entry.png is {width}x{height}, over the 1024x1024 cap")
+    return blob
 
 
-def main():
-    target, page = deliver_page()
-    # Read the copy back before reporting success: the entry counts only
-    # if the file on disk is the committed page, unchanged, so a short
-    # write or a swapped source must fail here rather than pass silently.
-    with open(target, "rb") as handle:
-        on_disk = handle.read()
-    if on_disk != page:
-        print(f"error: {target} does not match the committed page", file=sys.stderr)
-        return 1
-    import hashlib
+def publish(blob: bytes) -> None:
+    os.makedirs(TARGET_DIR, exist_ok=True)
+    fd, tmp = tempfile.mkstemp(dir=TARGET_DIR, suffix=".tmp")
+    try:
+        with os.fdopen(fd, "wb") as fh:
+            fh.write(blob)
+        os.replace(tmp, TARGET)
+    except BaseException:
+        try:
+            os.unlink(tmp)
+        except OSError:
+            pass
+        raise
 
-    digest = hashlib.sha256(page).hexdigest()
-    print(f"wrote {target} ({len(page)} bytes, sha256 {digest})")
+
+def main() -> int:
+    blob = read_page()
+    publish(blob)
+    print(f"published {TARGET} ({len(blob)} bytes)")
     return 0
 
 

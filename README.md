@@ -45,6 +45,17 @@ MAKEFUN_OUTPUT_DIR=/tmp/out python3 main.py
 committed `entry.png` to the output directory and verifies the copy byte
 for byte before reporting success.
 
+## Visual edition (v3)
+
+The standing entry is a visual-first front page: a large summit
+illustration (`assets/hero.png`) under the masthead, one bold lead
+headline, six short stories and the numbers band, composed by
+`tools/compose.py`:
+
+```sh
+python3 tools/compose.py   # writes entry.png
+```
+
 ## Rebuild the page
 
 ```sh
