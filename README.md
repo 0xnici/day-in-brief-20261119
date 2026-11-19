@@ -4,34 +4,35 @@
 [![rank](https://make.fun/badge/news-image-20261119/0xnici/day-in-brief-20261119/rank.svg)](https://make.fun/bounty/news-image-20261119/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261119)
 [![reward](https://make.fun/badge/news-image-20261119/0xnici/day-in-brief-20261119/reward.svg)](https://make.fun/bounty/news-image-20261119?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261119)
 
-One page, the whole day: a broadsheet front page that sums up the world
-news of **Thursday 19 November 2026** in a single 1024×1024 image.
+One page, the whole day: a dense broadsheet front page that sums up the
+world news of **Thursday 19 November 2026** in a single 1024×1024 image —
+a lead story, a dotted world map of the day's datelines, a day-in-numbers
+band, twenty-six stories in four columns, and an in-brief strip.
 
 ![The Day in Brief — Thursday 19 November 2026](entry.png)
 
 ## The front page
 
-- **Shenzhen · APEC summit** — Trump, Xi and Putin hold the first
-  trilateral meeting of the three leaders; one hour at the APEC summit,
-  nuclear arms control on Trump's agenda, Beijing resisting.
-- **The Gulf** — Iran fires on US drone and missile sites in Kuwait for
-  the first time since September, after the US strike on Qeshm Island;
-  Bahrain intercepts Iranian attacks for the third time in a week.
-- **Washington** — House Democrats nominate Hakeem Jeffries, who would
-  be the first African-American Speaker of the House.
-- **Nvidia** — acting chief executive Colette Kress opens with earlier
-  pay raises and larger stock grants; H-series shipments to mainland
-  China are halted.
-- **Deep space** — Voyager 1 crosses one light-day from Earth after
-  almost fifty years in flight; NASA confirms on Thursday.
-- **Brussels** — the Commission proposes a €45 billion loan for Ukraine,
-  repayable once Russia pays reparations.
+- **The lead · Shenzhen** — Trump, Xi and Putin hold the first trilateral
+  meeting of the three leaders at the APEC summit, nuclear arms control
+  on Trump's agenda, Beijing resisting.
+- **The Gulf** — Iran fires on US sites in Kuwait; a Houthi rocket kills
+  53 soldiers in Yemen; Saudi cities stand down.
+- **Europe** — the €45 billion EU loan for Ukraine, Moscow's protest to
+  Paris, Finland's nuclear-waste first, a spy arrest in Germany.
+- **Americas** — Jeffries nominated for Speaker, senators warn on AI
+  cyber threats, an NSA network outage, Fed minutes pointing to hikes.
+- **Science & tech** — Voyager 1 a light-day out, Nvidia halts H-series
+  shipments to China, 96% of coral reefs at risk by 2075.
+- **Asia-Pacific** — Xi's open-trade call, Cyclone Akvan, Bangladesh's
+  lockdown, Amazon's $7 billion India renewables bet.
+- **Markets** — gold's fourteen-month low, Goldman's India upgrade,
+  JPMorgan's $981 million crypto book.
+- **Health, sport & culture** — the US loses measles-free status, WHO on
+  antibiotic resistance, GTA VI's rollout, India's SAFF final win.
 
-The *Also today* strip carries GTA VI's global rollout, the Fed minutes,
-Cyclone Akvan, gold's slide to a fourteen-month low, Bangladesh's
-paramilitary deployment, and Pew's projection for the world's largest
-religion by 2035. Every story comes from the day's wire reporting; no
-story is invented, and figures are as reported that day.
+Every story comes from the day's wire reporting; no story is invented,
+and figures are as reported that day.
 
 ## Run it
 
